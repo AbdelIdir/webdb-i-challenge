@@ -6,9 +6,10 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   ///stretch part for sorting and limiting
-  const { limit = 10, sortby = "id", sortdir = "asc" } = req.query;
+  // const { limit = 10, sortby = "id", sortdir = "asc" } = req.query;
 
-  Accounts.getAllPosts()
+  Accounts.getAllPosts(req.query)
+
     .then(result => {
       res.status(200).json(result);
     })
