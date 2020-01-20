@@ -18,8 +18,22 @@ function getPostById(id) {
     .first();
 }
 
-function insertNewPost({ name, budget }) {
-  return db("accounts").insert({ name, budget });
+function insertNewPost({
+  name,
+  budget
+}) //here we could also do account instead of {name,budget}
+
+{
+  return (
+    db("accounts")
+      .insert({ name, budget }, "id")
+      // and then put account here too in that case
+      .then(ids => {
+        const [id] = ids;
+
+        return getPostById(id);
+      })
+  );
 }
 
 function replacePostById({ id, name, budget }) {

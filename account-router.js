@@ -108,7 +108,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const { name, budget } = req.body;
-
+  const accountData = req.body;
   if (!(name && budget)) {
     res
       .status(400)
@@ -116,13 +116,13 @@ router.post("/", (req, res) => {
     return;
   }
 
-  Accounts.insertNewPost({ name, budget })
+  Accounts.insertNewPost(accountData)
 
     // another way of doing it,here up above
     // Accounts.insert(data)
     //   .into("accounts")
-    .then(ids => {
-      res.status(201).json(ids);
+    .then(account => {
+      res.status(201).json(account);
     })
 
     .catch(err => {
