@@ -1,10 +1,11 @@
 -- Database Queries
--- Find all customers with postal code 1010
+-- Find all customers with postal code 1010,return 3 of them
 SELECT
   *
 FROM Customers
 WHERE
-  postalcode = 1010;
+  postalcode = 1010
+  LIMIT 3
 -- Find the phone number for the supplier with the id 11
 SELECT
   phone
